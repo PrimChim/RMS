@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{%block title%}Add Items | RMS{%endblock%}
+
+{%block content%}
+<h1>Add Items</h1>
+<hr>
+<form method="post" class="container">
+    {% if message %}
+    <div class="alert alert-success" role="alert">
+        {{message}}
+    </div>
+    {% endif %}
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="Item" class="form-label">Item Name</label>
+        <input type="text" name="name" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" name="price" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="Item" class="form-label">Description</label>
+        <textarea type="text" name="description" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{%endblock%}
