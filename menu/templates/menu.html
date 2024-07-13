@@ -7,6 +7,11 @@
 <a href="{% url 'menu:add-items' %}" class="btn btn-primary">Add Items</a>
 <hr>
 <div class="row container">
+    {% if message %}
+    <div class="alert alert-success" role="alert">
+        {{message}}
+    </div>
+    {% endif %}
     {% for item in menu %}
     <div class="col-md-4">
         <div class="card mb-4 shadow-sm">
@@ -16,11 +21,9 @@
                 <p class="card-text">Price: {{ item.price }}</p>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                        <a href="" class="btn btn-sm
-                            btn-outline-secondary">View</a>
-                        <a href="" class="btn btn-sm
+                        <a href="{% url 'menu:edit-item' id=item.id %}" class="btn btn-sm
                             btn-outline-secondary">Edit</a>
-                        <a href="" class="btn btn-sm
+                        <a href="{% url 'menu:delete-item' id=item.id %}" class="btn btn-sm
                             btn-outline-secondary">Delete</a>
                     </div>
                 </div>
