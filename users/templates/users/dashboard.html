@@ -1,1 +1,58 @@
-<a href="{% url 'menu:menu' %}">Menu</a>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="content bg-dark text-white main" style="height: 100vh;">
+
+    <h1>Select A User Mode</h1>
+    <div class="selectables">
+
+        <div class="options">
+            <h2>Kitchen</h2>
+            <img src="{% static 'gif/Chef.gif' %}" alt="Kitchen Mode" class="user-mode-img">
+        </div>
+        <div class="options">
+            <h2>Order</h2>
+            <img src="{% static 'gif/Waiters.gif' %}" alt="Order Mode" class="user-mode-img">
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .selectables{
+        display: flex;
+        width: 40%;
+        justify-content: space-around;
+    }
+
+    .options{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(142, 255, 195);
+        color: rgb(69, 69, 69);
+        padding: 5px;
+        border-radius: 10px;
+    }
+
+    .options:hover{
+        background-color: rgb(196, 255, 245);
+        transition-delay: 250ms;
+    }
+
+    .user-mode-img{
+        height: 200px;
+        width: 200px;
+        border-radius: 8px;
+    }
+
+</style>
+{% endblock %}
