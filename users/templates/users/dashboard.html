@@ -11,10 +11,12 @@
             <h2>Kitchen</h2>
             <img src="{% static 'gif/Chef.gif' %}" alt="Kitchen Mode" class="user-mode-img">
         </div>
-        <div class="options">
-            <h2>Order</h2>
-            <img src="{% static 'gif/Waiters.gif' %}" alt="Order Mode" class="user-mode-img">
-        </div>
+        <a href="{% url 'orders:create-orders' %}" style="text-decoration: none;">
+            <div class="options">
+                <h2>Order</h2>
+                <img src="{% static 'gif/Waiters.gif' %}" alt="Order Mode" class="user-mode-img">
+            </div>
+        </a>
 
     </div>
 </div>

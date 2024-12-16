@@ -1,0 +1,45 @@
+{% include 'base.html' %}
+
+{% block content %}
+<h1>Order Page</h1>
+<form action="" method="post" id="orderForm">
+    {% csrf_token %}
+    <div id="form-fields-container">
+        <!-- Initial Form Field -->
+        <div class="form-group">
+            <label for="items-0">Select Item:</label>
+            {% if items %}
+            <select name="items[]" id="items-0" class="form-select">
+                {% for i in items %}
+                <option value="{{ i.id }}">{{ i.name }}</option>
+                {% endfor %}
+            </select>
+            {% endif %}
+        </div>
+    </div>
+    <button type="button" id="add-more" class="btn btn-secondary">Add More</button>
+    <button type="submit" class="btn btn-primary">Order</button>
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const formContainer = document.getElementById("form-fields-container");
+        const addMoreButton = document.getElementById("add-more");
+
+        addMoreButton.addEventListener("click", function () {
+            const formCount = formContainer.children.length; // Get current number of fields
+            const newFormGroup = document.createElement("div");
+            newFormGroup.classList.add("form-group");
+            newFormGroup.innerHTML = `
+                <label for="items-${formCount}">Select Item:</label>
+                <select name="items[]" id="items-${formCount}" class="form-select">
+                    {% for i in items %}
+                    <option value="{{ i.id }}">{{ i.name }}</option>
+                    {% endfor %}
+                </select>
+            `;
+            formContainer.appendChild(newFormGroup);
+        });
+    });
+</script>
+{% endblock %}
