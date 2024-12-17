@@ -20,10 +20,10 @@
             </select>
             {% endif %}
         </div>
-    </div>
-    <div class="form-group">
-        <label for="quantity">Quantity:</label>
-        <input type="number" name="quantity" id="quantity" class="form-control">
+        <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input type="number" name="quantity[]" id="quantity" class="form-control">
+        </div>
     </div>
     <button type="button" id="add-more" class="btn btn-secondary">Add More</button>
     <button type="submit" class="btn btn-primary">Order</button>
@@ -37,7 +37,9 @@
         addMoreButton.addEventListener("click", function () {
             const formCount = formContainer.children.length; // Get current number of fields
             const newFormGroup = document.createElement("div");
+            const newQuantityGroup = document.createElement("div");
             newFormGroup.classList.add("form-group");
+            newQuantityGroup.classList.add("form-group");
             newFormGroup.innerHTML = `
                 <label for="items-${formCount}">Select Item:</label>
                 <select name="items[]" id="items-${formCount}" class="form-select">
@@ -46,7 +48,12 @@
                     {% endfor %}
                 </select>
             `;
+            newQuantityGroup.innerHTML = `
+                <label for="quantity">Quantity:</label>
+                <input type="number" name="quantity[]" id="quantity" class="form-control">
+            `;
             formContainer.appendChild(newFormGroup);
+            formContainer.appendChild(newQuantityGroup);
         });
     });
 </script>
