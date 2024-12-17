@@ -12,7 +12,7 @@ def make_pending(modeladmin, request, queryset):
     queryset.update(status="P")
 
 class OrdersAdmin(admin.ModelAdmin):
-    list_display = "id","name","quantity","status",
+    list_display = "table_number", "id","name","quantity","status",
     ordering = "id",
     actions = make_completed, make_pending,
 
