@@ -20,3 +20,28 @@ def create_orders(request):
                 order_item.save()
     items = MenuItems.objects.all()
     return render(request, 'orders/create_orders.html',{"items": items})
+
+def kot(request):
+    # Fetch all orders
+    orders = Orders.objects.all()
+
+    # Construct a list of orders with their items
+    order_details = []
+    for order in orders:
+        # Get all order items related to the current order
+        items = OrderItems.objects.filter(order_number=order)
+        
+        # Append order and its items to the details list
+        order_details.append({
+            'order': order,
+            'items': [
+                {
+                    'name': item.name.name,  # Access MenuItem name
+                    'quantity': item.quantity,
+                }
+                for item in items
+            ]
+        })
+
+    # Send data to the template
+    return render(request, 'orders/kot.html', {'order_details': order_details})

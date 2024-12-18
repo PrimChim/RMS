@@ -1,0 +1,14 @@
+{% include 'base.html' %}
+
+{% block content %}
+<h1>KOT</h1>
+<div class="bg-primary border border-gray rounded text-white">
+    {% for order_detail in order_details %}
+    <h2 class="bg-success">Table Number: {{order_detail.order}}</h2>
+    {% for item in order_detail.items %}
+    <p>{{item.name}}</p>
+    <p>{{item.quantity}}</p>
+    {% endfor %}
+    {% endfor %}
+</div>
+{% endblock %}
