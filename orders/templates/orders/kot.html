@@ -2,13 +2,27 @@
 
 {% block content %}
 <h1>KOT</h1>
-<div class="bg-primary border border-gray rounded text-white">
+<div class="rounded text-black" style="width: 18rem;">
     {% for order_detail in order_details %}
-    <h2 class="bg-success">Table Number: {{order_detail.order}}</h2>
-    {% for item in order_detail.items %}
-    <p>{{item.name}}</p>
-    <p>{{item.quantity}}</p>
-    {% endfor %}
+    <div class="m-3">
+        <h2 class="bg-success rounded text-center">Table Number: {{order_detail.order}}</h2>
+        <table class="table table-sm table-striped table-dark table-bordered table-hover">
+            <thead>
+                <tr>
+                    <td>Items</td>
+                    <td>Quantity</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in order_detail.items %}
+                <tr>
+                    <td>{{item.name}}</td>
+                    <td>{{item.quantity}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
     {% endfor %}
 </div>
 {% endblock %}
